@@ -1,4 +1,4 @@
-package com.cart.backoffice;
+package com.app.cart;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
