@@ -10,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import org.springframework.stereotype.Component;
 import lombok.Data;
 
 /**
@@ -20,7 +19,6 @@ import lombok.Data;
 
 @Entity
 @Table(name="BrandOffer")
-@Component
 @Data
 public class BrandOfferPOJO {
 	

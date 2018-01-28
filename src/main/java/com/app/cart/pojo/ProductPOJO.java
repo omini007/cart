@@ -14,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import org.springframework.stereotype.Component;
 import lombok.Data;
 
 /**
@@ -24,7 +23,6 @@ import lombok.Data;
 
 @Entity
 @Table(name="Product")
-@Component
 @Data
 public class ProductPOJO {
 	
