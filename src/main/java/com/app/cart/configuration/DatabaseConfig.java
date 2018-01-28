@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableAutoConfiguration	
 @EntityScan(basePackages = {"com.app.cart"})
 @EnableJpaRepositories(basePackages = {"com.app.cart"})
 public class DatabaseConfig {
