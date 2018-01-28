@@ -21,7 +21,6 @@ import lombok.Data;
 
 @Entity
 @Table(name="Category")
-@Component
 @Data
 public class CategoryPOJO {
 	

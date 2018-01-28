@@ -24,7 +24,6 @@ import lombok.Data;
 
 @Entity
 @Table(name="Product")
-@Component
 @Data
 public class ProductPOJO {
 	

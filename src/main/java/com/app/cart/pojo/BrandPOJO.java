@@ -21,7 +21,6 @@ import lombok.Data;
 
 @Entity
 @Table(name="Brand")
-@Component
 @Data
 public class BrandPOJO {
 	

@@ -20,7 +20,6 @@ import lombok.Data;
 
 @Entity
 @Table(name="CategoryOffer")
-@Component
 @Data
 public class CategoryOfferPOJO {
 	
