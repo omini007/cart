@@ -1,4 +1,4 @@
-package com.app.cart.pojo;
+package com.app.cart.entity;
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -14,19 +14,19 @@ import lombok.Data;
 
 /**
  * @author omkar.nikam
- * Table for Product Offers
+ * Table for Brand Offers
  */
 
 @Entity
-@Table(name="ProductOffer")
+@Table(name="BrandOffer")
 @Data
-public class ProductOfferPOJO {
-
+public class BrandOffer {
+	
 	@Id
 	@Column(unique = true, nullable = false)
-	@SequenceGenerator(name="ProductOffer_SEQ", sequenceName="ProductOffer_SEQ", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ProductOffer_SEQ")
-	private Integer productOfferId;
+	@SequenceGenerator(name="BrandOffer_SEQ", sequenceName="BrandOffer_SEQ", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="BrandOffer_SEQ")
+	private Integer brandOfferId;
 	
 	@Column(unique = false, nullable = false, length=50)
 	private String offerDescription;
@@ -50,7 +50,7 @@ public class ProductOfferPOJO {
 	private Date expiryDate;
 	
 	@ManyToOne
-	@JoinColumn( name = "productId", nullable = false )
-	private ProductPOJO product;
+	@JoinColumn( name = "brandId", nullable = false )
+	private Brand brand;
 	
 }

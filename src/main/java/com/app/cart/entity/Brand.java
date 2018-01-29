@@ -1,4 +1,4 @@
-package com.app.cart.pojo;
+package com.app.cart.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import lombok.Data;
 @Entity
 @Table(name="Brand")
 @Data
-public class BrandPOJO {
+public class Brand {
 	
 	@Id
 	@Column(unique = true, nullable = false)
@@ -33,9 +33,9 @@ public class BrandPOJO {
 	private String brandName;
 	
 	@OneToMany( mappedBy = "brand" , cascade = CascadeType.ALL, orphanRemoval = true )
-	private final List<ProductPOJO> products = new ArrayList<ProductPOJO>();
+	private final List<Product> products = new ArrayList<Product>();
 	
 	@OneToMany( mappedBy = "brand" , cascade = CascadeType.ALL, orphanRemoval = true )
-	private final List<BrandOfferPOJO> offers = new ArrayList<BrandOfferPOJO>();
+	private final List<BrandOffer> offers = new ArrayList<BrandOffer>();
 	
 }
