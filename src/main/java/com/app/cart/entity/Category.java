@@ -1,7 +1,6 @@
 package com.app.cart.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 
 /**
@@ -21,6 +23,7 @@ import lombok.Data;
 @Entity
 @Table(name="Category")
 @Data
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "categoryId")
 public class Category {
 	
 	@Id
@@ -39,9 +42,11 @@ public class Category {
 	private Integer parentCategoryId;
 	
 	@OneToMany( mappedBy = "category" , cascade = CascadeType.ALL, orphanRemoval = true )
-	private final List<Product> products = new ArrayList<Product>();
+	@JsonIgnore
+	private Set<Product> products;
 	
 	@OneToMany( mappedBy = "category" , cascade = CascadeType.ALL, orphanRemoval = true )
-	private final List<CategoryOffer> offers = new ArrayList<CategoryOffer>();
+	@JsonIgnore
+	private Set<CategoryOffer> offers;
 	
 }

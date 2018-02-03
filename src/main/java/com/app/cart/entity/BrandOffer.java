@@ -31,6 +31,9 @@ public class BrandOffer {
 	@Column(unique = false, nullable = false, length=50)
 	private String offerDescription;
 	
+	@Column(unique = false, nullable = false, length=15)
+	private String couponCode;
+	
 	@Column(unique = false, nullable = true)
 	private Double discountPercent;
 	
