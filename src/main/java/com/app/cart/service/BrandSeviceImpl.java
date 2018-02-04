@@ -59,8 +59,7 @@ public class BrandSeviceImpl implements BrandService{
 	 * @exception - IllegalArgumentException
 	 */
 	@Override
-	public ResponseEntity<?> deleteBrand(Integer id) {
-		
+	public ResponseEntity<?> deleteBrand(Integer id) {	
 			Brand dbEntity=repo.findOne(id);
 			if(null == dbEntity)
 				return ResponseEntity.notFound().build();
