@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.app.cart.entity.Offer;
-import com.app.cart.repo.OfferRepo;
+import com.app.cart.repository.OfferRepository;
 
 /**
  * @author Nilesh Sargar
@@ -21,7 +21,7 @@ import com.app.cart.repo.OfferRepo;
 public class OfferServiceImpl implements OfferService {
 
 	@Autowired
-	private OfferRepo repo;
+	private OfferRepository repo;
 	
 	
 	
