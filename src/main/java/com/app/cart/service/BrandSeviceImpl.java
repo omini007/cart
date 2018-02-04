@@ -61,7 +61,7 @@ public class BrandSeviceImpl implements BrandService{
 	@Override
 	public ResponseEntity<?> deleteBrand(Integer id) {
 		
-			Brand dbEntity=repo.getOne(id);
+			Brand dbEntity=repo.findOne(id);
 			if(null == dbEntity)
 				return ResponseEntity.notFound().build();
 		try {
@@ -80,7 +80,7 @@ public class BrandSeviceImpl implements BrandService{
 	@Override
 	public ResponseEntity<?> getBrand(Integer id) {
 		try {
-			Brand dbEntity = repo.getOne(id);
+			Brand dbEntity = repo.findOne(id);
 			if(null == dbEntity)
 				return ResponseEntity.notFound().build();
 			return new ResponseEntity<Brand>(dbEntity,new HttpHeaders(),HttpStatus.OK);
