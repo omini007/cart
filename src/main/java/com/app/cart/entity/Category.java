@@ -41,12 +41,12 @@ public class Category {
 	@Column(unique = false, nullable = true)
 	private Integer parentCategoryId;
 	
-	@OneToMany( mappedBy = "category" , cascade = CascadeType.ALL, orphanRemoval = true )
+	@OneToMany( mappedBy = "category" , cascade = CascadeType.ALL, orphanRemoval = false )
 	@JsonIgnore
 	private Set<Product> products;
 	
-	@OneToMany( mappedBy = "category" , cascade = CascadeType.ALL, orphanRemoval = true )
+	@OneToMany( mappedBy = "category" , cascade = CascadeType.ALL, orphanRemoval = false )
 	@JsonIgnore
 	private Set<CategoryOffer> offers;
-	
+
 }
