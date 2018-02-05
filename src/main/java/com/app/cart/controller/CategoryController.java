@@ -15,9 +15,9 @@ import com.app.cart.entity.Category;
 import com.app.cart.service.CategoryService;
 
 /**
- * 
- * @author omkar.nikam
- *
+ * @author Omkar Nikam
+ * @since 04-Feb-2018
+ * Rest Controller for Category APIs
  */
 
 @RestController
@@ -29,32 +29,52 @@ public class CategoryController {
 	@Autowired
 	CategoryService service;
 	
+	/**
+	 * @param category - the entity Category
+	 * @return Id of the persisted Category entity
+	 */
 	@PostMapping("/add")
-	public ResponseEntity<?> addCategory(@RequestBody Category category){
+	public ResponseEntity<?> addCategory(@RequestBody Category category) {
 		logger.info("Add Category : " + category);
 		return service.addCategory(category);
 	}
 	
-	@PostMapping("/edit/{id}")
-	public ResponseEntity<?> editCategory(@PathVariable Integer id, Category category){
-		logger.info("Edit Category, id : " + id + ", :" + category);
+	/**
+	 * @param id - Id of the Category to be edited
+	 * @param category - the entity Category
+	 * @return the edited entity Category
+	 */
+	@PutMapping("/edit/{id}")
+	public ResponseEntity<?> editCategory(@PathVariable Integer id, Category category) {
+		logger.info("Edit Category, id : " + id + ", category :" + category);
 		return service.editCategory(id, category);
 	}
 	
+	/**
+	 * @param id - Id of the Category to be deleted
+	 * @return the deleted entity Category
+	 */
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<?> deleteCategory(@PathVariable Integer id){
+	public ResponseEntity<?> deleteCategory(@PathVariable Integer id) {
 		logger.info("Delete Category, id : " + id);
 		return service.deleteCategory(id);
 	}
 	
+	/**
+	 * @param id - Id of the Category to be retrieved
+	 * @return the requested entity Category
+	 */
 	@GetMapping("/get/{id}")
-	public ResponseEntity<?> getCategory(@PathVariable Integer id){
+	public ResponseEntity<?> getCategory(@PathVariable Integer id) {
 		logger.info("Get Category, id : " + id);
 		return service.getCategory(id);
 	}
 
 	@GetMapping("/getAll")
-	public ResponseEntity<?> getAllCategories(){
+	/**
+	 * @return list of Category Entities
+	 */
+	public ResponseEntity<?> getAllCategories() {
 		logger.info("Get All Categories");
 		return service.getAllCategories();
 	}
