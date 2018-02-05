@@ -1,6 +1,9 @@
 package com.app.cart.service;
 
 import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -16,6 +19,7 @@ import com.app.cart.repository.BrandRepository;
  */
 
 @Service
+@Transactional
 public class BrandSeviceImpl implements BrandService{
 
 	private static final Logger logger=Logger.getLogger(BrandSeviceImpl.class);
@@ -42,11 +46,11 @@ public class BrandSeviceImpl implements BrandService{
 	 */	
 	@Override
 	public ResponseEntity<?> editBrand(Integer id, Brand brand) {
-			Brand dbEntity=repo.findOne(id);
-			if(null == dbEntity)
-				return ResponseEntity.notFound().build();
-			
-			brand.setBrandId(dbEntity.getBrandId());
+		Brand dbEntity=repo.findOne(id);
+		if(null == dbEntity)
+			return ResponseEntity.notFound().build();
+
+		brand.setBrandId(dbEntity.getBrandId());
 		try {
 			return new ResponseEntity<Brand>(repo.save(brand),new HttpHeaders(),HttpStatus.OK);
 		} catch (Exception e) {
@@ -60,9 +64,9 @@ public class BrandSeviceImpl implements BrandService{
 	 */
 	@Override
 	public ResponseEntity<?> deleteBrand(Integer id) {	
-			Brand dbEntity=repo.findOne(id);
-			if(null == dbEntity)
-				return ResponseEntity.notFound().build();
+		Brand dbEntity=repo.findOne(id);
+		if(null == dbEntity)
+			return ResponseEntity.notFound().build();
 		try {
 			repo.delete(id);
 			return new ResponseEntity<Brand>(dbEntity,new HttpHeaders(),HttpStatus.OK);
