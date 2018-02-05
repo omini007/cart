@@ -24,8 +24,8 @@ public class BrandOffer {
 	
 	@Id
 	@Column(unique = true, nullable = false)
-	@SequenceGenerator(name="BrandOffer_SEQ", sequenceName="BrandOffer_SEQ", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="BrandOffer_SEQ")
+	@SequenceGenerator(name="brandoffer_seq", sequenceName="brandoffer_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="brandoffer_seq")
 	private Integer brandOfferId;
 	
 	@Column(unique = false, nullable = false, length=50)

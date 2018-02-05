@@ -24,8 +24,8 @@ public class CategoryOffer {
 	
 	@Id
 	@Column(unique = true, nullable = false)
-	@SequenceGenerator(name="CategoryOffer_SEQ", sequenceName="CategoryOffer_SEQ", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CategoryOffer_SEQ")
+	@SequenceGenerator(name="categoryoffer_seq", sequenceName="categoryoffer_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="categoryoffer_seq")
 	private Integer categoryOfferId;
 	
 	@Column(unique = false, nullable = false, length=50)

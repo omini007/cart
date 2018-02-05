@@ -28,8 +28,8 @@ public class Category {
 	
 	@Id
 	@Column(unique = true, nullable = false)
-	@SequenceGenerator(name="Category_SEQ", sequenceName="Category_SEQ", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="Category_SEQ")
+	@SequenceGenerator(name="category_seq", sequenceName="category_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="category_seq")
 	private Integer categoryId;
 	
 	@Column(unique = false, nullable = false, length=50)

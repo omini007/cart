@@ -31,8 +31,8 @@ public class Product {
 	
 	@Id
 	@Column(unique = true, nullable = false)
-	@SequenceGenerator(name="Product_SEQ", sequenceName="Product_SEQ", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="Product_SEQ")
+	@SequenceGenerator(name="product_seq", sequenceName="product_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="product_seq")
 	private Integer productId;
 
 	@Column(unique = false, nullable = false, length=50)
