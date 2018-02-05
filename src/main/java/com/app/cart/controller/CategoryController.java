@@ -45,7 +45,7 @@ public class CategoryController {
 	 * @return the edited entity Category
 	 */
 	@PutMapping("/edit/{id}")
-	public ResponseEntity<?> editCategory(@PathVariable Integer id, Category category) {
+	public ResponseEntity<?> editCategory(@PathVariable Integer id, @RequestBody Category category) {
 		logger.info("Edit Category, id : " + id + ", category :" + category);
 		return service.editCategory(id, category);
 	}
