@@ -1,13 +1,13 @@
 package com.app.cart.service;
 
 import java.util.List;
-import javax.transaction.Transactional;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import com.app.cart.entity.Category;
 import com.app.cart.repository.CategoryRepository;
 
@@ -43,15 +43,19 @@ public class CategoryServiceImpl implements CategoryService {
 	public ResponseEntity<?> editCategory(Integer id, Category category) {
 		
 		Category dbObject = repository.findOne(id);
-		if (null == dbObject)
+		if (null == dbObject) {
+			logger.info("Category not found with id : " + id);
 			return ResponseEntity.notFound().build();
+		}
 		
 		category.setCategoryId(dbObject.getCategoryId());
 		
 		try {
+			logger.info("Editing a Category : " + category);
 			return new ResponseEntity<Category>(repository.save(category), new HttpHeaders(), HttpStatus.OK); 
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.error("Error in editing a Category : " + e.getMessage());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -60,36 +64,47 @@ public class CategoryServiceImpl implements CategoryService {
 	public ResponseEntity<?> deleteCategory(Integer id) {
 		
 		Category dbObject = repository.findOne(id);
-		if (null == dbObject)
+		if (null == dbObject) {
+			logger.info("Category not found with id : " + id);
 			return ResponseEntity.notFound().build();
+		}
 		
 		try {
+			logger.info("Deleting a Category, id : " + id);
 			repository.delete(id);
 			return new ResponseEntity<Category>(dbObject, new HttpHeaders(), HttpStatus.OK); 
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.error("Error in deleting a Category : " + e.getMessage());
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
 
 	@Override
 	public ResponseEntity<?> getCategory(Integer id) {
-		logger.info("Getting a Category, id : " + id);
-		Category dbObject = repository.findOne(id);
-		logger.info("Category : " + dbObject);
-		if (null == dbObject)
-			return ResponseEntity.notFound().build();
 		
+		logger.info("Getting Category with id : " + id);
+		Category dbObject = repository.findOne(id);
+		if (null == dbObject) {
+			logger.info("Category not found with id : " + id);
+			return ResponseEntity.notFound().build();
+		}
+		
+		logger.info("Found Category with id : " + id + ", Category : " + dbObject);
 		return new ResponseEntity<Category>(dbObject, new HttpHeaders(), HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<?> getAllCategories() {
 		
+		logger.info("Getting All Categories");
 		List<Category> list = repository.findAll();
-		if(null == list)
+		if(null == list) {
+			logger.info("Categories not found");
 			return ResponseEntity.notFound().build();
+		}
 		
+		logger.info("Categories Found : " + list);
 		return new ResponseEntity<List<Category>>(list, new HttpHeaders(), HttpStatus.OK);
 	}
 
