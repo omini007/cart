@@ -47,6 +47,7 @@ public class BrandSeviceImpl implements BrandService{
 	@Override
 	public ResponseEntity<?> editBrand(Integer id, Brand brand) {
 		Brand dbEntity=repo.findOne(id);
+	
 		if(null == dbEntity)
 			return ResponseEntity.notFound().build();
 
