@@ -14,6 +14,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * @author omkar.nikam
@@ -24,6 +26,8 @@ import lombok.Data;
 @Table(name="Category")
 @Data
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "categoryId")
+@EqualsAndHashCode(exclude = {"offers","products"})
+@ToString(exclude = {"offers","products"})
 public class Category {
 	
 	@Id
