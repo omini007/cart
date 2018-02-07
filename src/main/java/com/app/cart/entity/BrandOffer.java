@@ -1,4 +1,4 @@
-package com.app.cart.pojo;
+package com.app.cart.entity;
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -20,7 +20,7 @@ import lombok.Data;
 @Entity
 @Table(name="BrandOffer")
 @Data
-public class BrandOfferPOJO {
+public class BrandOffer {
 	
 	@Id
 	@Column(unique = true, nullable = false)
@@ -30,6 +30,9 @@ public class BrandOfferPOJO {
 	
 	@Column(unique = false, nullable = false, length=50)
 	private String offerDescription;
+	
+	@Column(unique = false, nullable = false, length=15)
+	private String couponCode;
 	
 	@Column(unique = false, nullable = true)
 	private Double discountPercent;
@@ -51,6 +54,6 @@ public class BrandOfferPOJO {
 	
 	@ManyToOne
 	@JoinColumn( name = "brandId", nullable = false )
-	private BrandPOJO brand;
+	private Brand brand;
 	
 }

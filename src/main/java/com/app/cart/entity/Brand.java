@@ -1,7 +1,6 @@
-package com.app.cart.pojo;
+package com.app.cart.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 
 /**
@@ -21,7 +23,8 @@ import lombok.Data;
 @Entity
 @Table(name="Brand")
 @Data
-public class BrandPOJO {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "brandId")
+public class Brand {
 	
 	@Id
 	@Column(unique = true, nullable = false)
@@ -33,9 +36,11 @@ public class BrandPOJO {
 	private String brandName;
 	
 	@OneToMany( mappedBy = "brand" , cascade = CascadeType.ALL, orphanRemoval = true )
-	private final List<ProductPOJO> products = new ArrayList<ProductPOJO>();
+	@JsonIgnore
+	private Set<Product> products;
 	
 	@OneToMany( mappedBy = "brand" , cascade = CascadeType.ALL, orphanRemoval = true )
-	private final List<BrandOfferPOJO> offers = new ArrayList<BrandOfferPOJO>();
+	@JsonIgnore
+	private Set<BrandOffer> offers;
 	
 }

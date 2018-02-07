@@ -1,4 +1,4 @@
-package com.app.cart.pojo;
+package com.app.cart.entity;
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -14,22 +14,25 @@ import lombok.Data;
 
 /**
  * @author omkar.nikam
- * Table for Product Offers
+ * Table for Category Offers
  */
 
 @Entity
-@Table(name="ProductOffer")
+@Table(name="CategoryOffer")
 @Data
-public class ProductOfferPOJO {
-
+public class CategoryOffer {
+	
 	@Id
 	@Column(unique = true, nullable = false)
-	@SequenceGenerator(name="ProductOffer_SEQ", sequenceName="ProductOffer_SEQ", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ProductOffer_SEQ")
-	private Integer productOfferId;
+	@SequenceGenerator(name="CategoryOffer_SEQ", sequenceName="CategoryOffer_SEQ", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CategoryOffer_SEQ")
+	private Integer categoryOfferId;
 	
 	@Column(unique = false, nullable = false, length=50)
 	private String offerDescription;
+	
+	@Column(unique = false, nullable = false, length=15)
+	private String couponCode;
 	
 	@Column(unique = false, nullable = true)
 	private Double discountPercent;
@@ -50,7 +53,7 @@ public class ProductOfferPOJO {
 	private Date expiryDate;
 	
 	@ManyToOne
-	@JoinColumn( name = "productId", nullable = false )
-	private ProductPOJO product;
+	@JoinColumn( name = "categoryId", nullable = false )
+	private Category category;
 	
 }
