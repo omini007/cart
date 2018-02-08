@@ -10,7 +10,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * @author omkar.nikam
@@ -20,6 +26,9 @@ import lombok.Data;
 @Entity
 @Table(name="ProductOffer")
 @Data
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "productOfferId")
+@EqualsAndHashCode(exclude = {"product"})
+@ToString(exclude = {"product"})
 public class ProductOffer {
 
 	@Id

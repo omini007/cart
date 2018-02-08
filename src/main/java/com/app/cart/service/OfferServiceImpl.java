@@ -28,9 +28,13 @@ public class OfferServiceImpl implements OfferService {
 	@Override
 	public ResponseEntity<?> addOffer(Offer offer) {
 		// TODO Auto-generated method stub
-		
+		try {
 		return new ResponseEntity<Integer>(repo.save(offer).getOfferId(),new HttpHeaders(),HttpStatus.OK);
-	
+		}
+		catch(Exception e)
+		{
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.UNPROCESSABLE_ENTITY);
+		}
 	}
 
 	
@@ -38,6 +42,7 @@ public class OfferServiceImpl implements OfferService {
 	public ResponseEntity<?> editOffer(Integer id, Offer offer) {
 		// TODO Auto-generated method stub
 		
+		try {
 		Offer dbcopy= repo.findOne(id);
 		
 		if(null==dbcopy)
@@ -46,47 +51,65 @@ public class OfferServiceImpl implements OfferService {
 		offer.setOfferId(dbcopy.getOfferId()); //Just set new received offer objects id field to the one we want to edit in DB and persist using save()
 		
 		return new ResponseEntity<Offer>(repo.save(offer),new HttpHeaders(),HttpStatus.OK);
+		}
 	
-	
+		catch(Exception e)
+		{
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.UNPROCESSABLE_ENTITY);
+		}
 	
 	}
 
 	@Override
 	public ResponseEntity<?> deleteOffer(Integer id) {
 		// TODO Auto-generated method stub
+	try {
 		Offer deletedObject=repo.findOne(id);
 		if(null==deletedObject)
 			return ResponseEntity.notFound().build();
 		else {
 		repo.delete(id);
 		return new ResponseEntity<Offer>(deletedObject,new HttpHeaders(),HttpStatus.OK);}	
-		
+	}
+		catch(Exception e)
+		{
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.UNPROCESSABLE_ENTITY);
+		}
 	}
 
 	@Override
 	public ResponseEntity<?> getOffer(Integer id) {
 		// TODO Auto-generated method stub
-		
+		try {
 		Offer requestedObject=repo.findOne(id);
 		
 		if(null==requestedObject)
 			return ResponseEntity.notFound().build();
 		
 		return new ResponseEntity<Offer>(requestedObject,new HttpHeaders(),HttpStatus.OK);
-
+		}
+		catch(Exception e)
+		{
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.UNPROCESSABLE_ENTITY);
+		}
 	}
 
 	@Override
 	public ResponseEntity<?> getAllOffers() {
 		// TODO Auto-generated method stub
 	
+		try {
 		List<Offer> list=repo.findAll();
 		
 		if(null==list)
 			return ResponseEntity.notFound().build();
 		
 		return new ResponseEntity<List<Offer>>(list,new HttpHeaders(),HttpStatus.OK);
-
+		}
+		catch(Exception e)
+		{
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.UNPROCESSABLE_ENTITY);
+		}
 		
 	}
 
