@@ -13,6 +13,7 @@ import com.app.cart.service.ProductService;
 
 /**
  * @author Priyanka Bagul
+ * @since 05-Feb-2018
  */
 
 @RestController
@@ -20,43 +21,43 @@ import com.app.cart.service.ProductService;
 public class ProductController {
 	@Autowired
 	private ProductService service;
-	
+
 	private static final Logger logger=Logger.getLogger(ProductController.class);
-	
+
 	@PostMapping("/add")
 	public ResponseEntity<?> addProduct(@RequestBody Product product) {
 		return service.addProduct(product);
 	}
-	
+
 	@PostMapping("/edit/{id}")
 	public ResponseEntity<?> editProduct(@PathVariable Integer id, @RequestBody Product product) {
 		return service.editProduct(id, product);
 	}
-	
+
 	@PostMapping("/delete/{id}")
 	public ResponseEntity<?> deleteProduct(@PathVariable Integer id) {
 		return service.deleteProduct(id);
 	}
-	
+
 	@PostMapping("/get/{id}")
 	public ResponseEntity<?> getProduct(@PathVariable Integer id) {
 		return service.getProduct(id);
 	}
-	
+
 	@PostMapping("/getall")
 	public ResponseEntity<?> getAllProducts() {
 		return service.getAllProducts();
 	} 
-	
-	@PostMapping("/getByCategory/{category}")
-	public ResponseEntity<?> getByCategory(Integer Categoryid) {
-		return service.getByCategory(Categoryid);
-	}
-	
-	@PostMapping("/getByBrand/{brand}")
-	public ResponseEntity<?> getByBrand(Integer Brandid) {
-		return service.getByBrand(Brandid);
+
+	@PostMapping("/getbycategory/{category}")
+	public ResponseEntity<?> getByCategory(Integer categoryId) {
+		return service.getProductByCategory(categoryId);
 	}
 
-	
+	@PostMapping("/getbybrand/{brand}")
+	public ResponseEntity<?> getByBrand(Integer brandId) {
+		return service.getProductByBrand(brandId);
+	}
+
+
 }
