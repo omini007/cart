@@ -17,6 +17,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * @author omkar.nikam
@@ -27,6 +29,8 @@ import lombok.Data;
 @Table(name="Product")
 @Data
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "productId")
+@EqualsAndHashCode(exclude = {"category","brand","offers"})
+@ToString(exclude = {"category","brand","offers"})
 public class Product {
 	
 	@Id
@@ -64,7 +68,7 @@ public class Product {
 	@JoinColumn( name = "brandId", nullable = false )
 	private Category brand;
 	
-	@OneToMany( mappedBy = "product" , cascade = CascadeType.ALL, orphanRemoval = true )
+	@OneToMany( mappedBy = "product" , cascade = CascadeType.ALL, orphanRemoval = false )
 	@JsonIgnore
 	private Set<ProductOffer> offers;
 
