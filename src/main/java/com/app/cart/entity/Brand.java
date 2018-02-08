@@ -28,8 +28,8 @@ public class Brand {
 	
 	@Id
 	@Column(unique = true, nullable = false)
-	@SequenceGenerator(name="Brand_SEQ", sequenceName="Brand_SEQ", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="Brand_SEQ")
+	@SequenceGenerator(name="brand_seq", sequenceName="brand_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="brand_seq")
 	private Integer brandId;
 	
 	@Column(unique = false, nullable = false, length=50)
