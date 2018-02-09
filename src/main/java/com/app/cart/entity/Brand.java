@@ -14,6 +14,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * @author omkar.nikam
@@ -23,23 +25,25 @@ import lombok.Data;
 @Entity
 @Table(name="Brand")
 @Data
+@ToString(exclude= {"offers","products"})
+@EqualsAndHashCode(exclude= {"offers","products"})
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "brandId")
 public class Brand {
 	
 	@Id
 	@Column(unique = true, nullable = false)
-	@SequenceGenerator(name="Brand_SEQ", sequenceName="Brand_SEQ", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="Brand_SEQ")
+	@SequenceGenerator(name="brand_seq", sequenceName="brand_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="brand_seq")
 	private Integer brandId;
 	
 	@Column(unique = false, nullable = false, length=50)
 	private String brandName;
 	
-	@OneToMany( mappedBy = "brand" , cascade = CascadeType.ALL, orphanRemoval = true )
+	@OneToMany( mappedBy = "brand" , cascade = CascadeType.ALL, orphanRemoval = false )
 	@JsonIgnore
 	private Set<Product> products;
 	
-	@OneToMany( mappedBy = "brand" , cascade = CascadeType.ALL, orphanRemoval = true )
+	@OneToMany( mappedBy = "brand" , cascade = CascadeType.ALL, orphanRemoval = false )
 	@JsonIgnore
 	private Set<BrandOffer> offers;
 	

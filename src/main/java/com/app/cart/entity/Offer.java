@@ -23,8 +23,8 @@ public class Offer {
 
 	@Id
 	@Column(unique = true, nullable = false)
-	@SequenceGenerator(name="Offer_SEQ", sequenceName="Offer_SEQ", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="Offer_SEQ")
+	@SequenceGenerator(name="offer_seq", sequenceName="offer_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="offer_seq")
 	private Integer offerId;
 	
 	@Column(unique = false, nullable = false, length=50)

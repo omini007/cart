@@ -10,7 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * @author omkar.nikam
@@ -20,12 +24,15 @@ import lombok.Data;
 @Entity
 @Table(name="CategoryOffer")
 @Data
+@EqualsAndHashCode(exclude = {"category"})
+@ToString(exclude = {"category"})
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "categoryOfferId")
 public class CategoryOffer {
 	
 	@Id
 	@Column(unique = true, nullable = false)
-	@SequenceGenerator(name="CategoryOffer_SEQ", sequenceName="CategoryOffer_SEQ", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CategoryOffer_SEQ")
+	@SequenceGenerator(name="categoryoffer_seq", sequenceName="categoryoffer_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="categoryoffer_seq")
 	private Integer categoryOfferId;
 	
 	@Column(unique = false, nullable = false, length=50)

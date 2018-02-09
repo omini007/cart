@@ -14,6 +14,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * @author omkar.nikam
@@ -23,13 +25,15 @@ import lombok.Data;
 @Entity
 @Table(name="Category")
 @Data
+@EqualsAndHashCode(exclude = {"offers","products"})
+@ToString(exclude = {"offers","products"})
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "categoryId")
 public class Category {
 	
 	@Id
 	@Column(unique = true, nullable = false)
-	@SequenceGenerator(name="Category_SEQ", sequenceName="Category_SEQ", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="Category_SEQ")
+	@SequenceGenerator(name="category_seq", sequenceName="category_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="category_seq")
 	private Integer categoryId;
 	
 	@Column(unique = false, nullable = false, length=50)
@@ -41,12 +45,12 @@ public class Category {
 	@Column(unique = false, nullable = true)
 	private Integer parentCategoryId;
 	
-	@OneToMany( mappedBy = "category" , cascade = CascadeType.ALL, orphanRemoval = true )
-	
+	@OneToMany( mappedBy = "category" , cascade = CascadeType.ALL, orphanRemoval = false )
+	@JsonIgnore
 	private Set<Product> products;
 	
-	@OneToMany( mappedBy = "category" , cascade = CascadeType.ALL, orphanRemoval = true )
-	
+	@OneToMany( mappedBy = "category" , cascade = CascadeType.ALL, orphanRemoval = false )
+	@JsonIgnore
 	private Set<CategoryOffer> offers;
-	
+
 }
