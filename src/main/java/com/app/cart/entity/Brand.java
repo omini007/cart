@@ -25,9 +25,9 @@ import lombok.ToString;
 @Entity
 @Table(name="Brand")
 @Data
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "brandId")
 @ToString(exclude= {"offers","products"})
 @EqualsAndHashCode(exclude= {"offers","products"})
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "brandId")
 public class Brand {
 	
 	@Id
@@ -39,11 +39,11 @@ public class Brand {
 	@Column(unique = false, nullable = false, length=50)
 	private String brandName;
 	
-	@OneToMany( mappedBy = "brand" , cascade = CascadeType.ALL, orphanRemoval = true )
+	@OneToMany( mappedBy = "brand" , cascade = CascadeType.ALL, orphanRemoval = false )
 	@JsonIgnore
 	private Set<Product> products;
 	
-	@OneToMany( mappedBy = "brand" , cascade = CascadeType.ALL, orphanRemoval = true )
+	@OneToMany( mappedBy = "brand" , cascade = CascadeType.ALL, orphanRemoval = false )
 	@JsonIgnore
 	private Set<BrandOffer> offers;
 	
