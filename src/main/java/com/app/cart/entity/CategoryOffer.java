@@ -25,9 +25,9 @@ import lombok.ToString;
 @Entity
 @Table(name="CategoryOffer")
 @Data
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "categoryOfferId")
 @EqualsAndHashCode(exclude = {"category"})
 @ToString(exclude = {"category"})
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "categoryOfferId")
 public class CategoryOffer {
 	
 	@Id

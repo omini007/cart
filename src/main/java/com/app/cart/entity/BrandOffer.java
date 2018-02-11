@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * @author omkar.nikam
@@ -23,6 +25,8 @@ import lombok.Data;
 @Entity
 @Table(name="BrandOffer")
 @Data
+@EqualsAndHashCode(exclude = {"brand"})
+@ToString(exclude = {"brand"})
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "brandOfferId")
 public class BrandOffer {
 	
