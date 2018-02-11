@@ -2,8 +2,9 @@ package com.app.cart.configuration;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +15,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableAutoConfiguration	
 @EntityScan(basePackages = {"com.app.cart"})
 @EnableJpaRepositories(basePackages = {"com.app.cart"})
 public class DatabaseConfig {
@@ -56,4 +56,11 @@ public class DatabaseConfig {
       transactionManager.setEntityManagerFactory(entityManagerFactory);
       return transactionManager;
   }
+  
+  @Bean
+  public ModelMapper modelMapper() {
+	    return new ModelMapper();
+	}
+  
+  
 }
