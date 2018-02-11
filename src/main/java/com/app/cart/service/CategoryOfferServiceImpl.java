@@ -34,93 +34,102 @@ public class CategoryOfferServiceImpl implements CategoryOfferService {
 			categoryOffer.setCreationDate(new Date());
 			return new ResponseEntity<Integer>(repository.save(categoryOffer).getCategoryOfferId(), new HttpHeaders(), HttpStatus.CREATED);
 		} catch (Exception e) {
-			e.printStackTrace();
 			logger.error("Error in saving a CategoryOffer : " + e.getMessage());
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
 
 	@Override
 	public ResponseEntity<?> editCategoryOffer(Integer id, CategoryOffer categoryOffer) {
 		
-		CategoryOffer dbObject = repository.findOne(id);
-		if(null == dbObject) {
-			logger.info("CategoryOffer not found with id : " + id);
-			return ResponseEntity.notFound().build();
-		}
-		
-		categoryOffer.setCategoryOfferId(dbObject.getCategoryOfferId());
-		
 		try {
+			CategoryOffer dbObject = repository.findOne(id);
+			if(null == dbObject) {
+				logger.info("CategoryOffer not found with id : " + id);
+				return ResponseEntity.notFound().build();
+			}
+			categoryOffer.setCategoryOfferId(dbObject.getCategoryOfferId());
 			logger.info("Editing a CategoryOffer : " + categoryOffer);
 			return new ResponseEntity<CategoryOffer>(repository.save(categoryOffer), new HttpHeaders(), HttpStatus.OK); 
 		} catch (Exception e) {
-			e.printStackTrace();
 			logger.error("Error in saving a CategoryOffer : " + e.getMessage());
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
 
 	@Override
 	public ResponseEntity<?> deleteCategoryOffer(Integer id) {
 
-		CategoryOffer dbObject = repository.findOne(id);
-		if (null == dbObject) {
-			logger.info("CategoryOffer not found with id : " + id);
-			return ResponseEntity.notFound().build();
-		}
-		
 		try {
+			CategoryOffer dbObject = repository.findOne(id);
+			if (null == dbObject) {
+				logger.info("CategoryOffer not found with id : " + id);
+				return ResponseEntity.notFound().build();
+			}
 			logger.info("Deleting a CategoryOffer, id : " + id);
 			repository.delete(id);
 			return new ResponseEntity<CategoryOffer>(dbObject, new HttpHeaders(), HttpStatus.OK); 
 		} catch (Exception e) {
-			e.printStackTrace();
 			logger.error("Error in deleting a CategoryOffer : " + e.getMessage());
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
 
 	@Override
 	public ResponseEntity<?> getCategoryOffer(Integer id) {
 		
-		logger.info("Getting CategoryOffer with id : " + id);
-		CategoryOffer dbObject = repository.findOne(id);
-		if (null == dbObject) {
-			logger.info("CategoryOffer not found with id : " + id);
-			return ResponseEntity.notFound().build();
+		try {
+			logger.info("Getting CategoryOffer with id : " + id);
+			CategoryOffer dbObject = repository.findOne(id);
+			if (null == dbObject) {
+				logger.info("CategoryOffer not found with id : " + id);
+				return ResponseEntity.notFound().build();
+			}
+			
+			logger.info("Found CategoryOffer with id : " + id + ", CategoryOffer : " + dbObject);
+			return new ResponseEntity<CategoryOffer>(dbObject, new HttpHeaders(), HttpStatus.OK);
+		} catch (Exception e) {
+			logger.error("Error in getting a CategoryOffer : " + e.getMessage());
+			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 		
-		logger.info("Found CategoryOffer with id : " + id + ", CategoryOffer : " + dbObject);
-		return new ResponseEntity<CategoryOffer>(dbObject, new HttpHeaders(), HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<?> getAllCategoryOffers() {
 
-		logger.info("Getting All CategoryOffers");
-		List<CategoryOffer> list = repository.findAll();
-		if(null == list) {
-			logger.info("Category Offers not found");
-			return ResponseEntity.notFound().build();
+		try {
+			logger.info("Getting All CategoryOffers");
+			List<CategoryOffer> list = repository.findAll();
+			if(null == list) {
+				logger.info("Category Offers not found");
+				return ResponseEntity.notFound().build();
+			}
+			logger.info("Category Offers Found : " + list);
+			return new ResponseEntity<List<CategoryOffer>>(list, new HttpHeaders(), HttpStatus.OK);
+		} catch (Exception e) {
+			logger.error("Error in getting all CategoryOffers : " + e.getMessage());
+			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
-		
-		logger.info("Category Offers Found : " + list);
-		return new ResponseEntity<List<CategoryOffer>>(list, new HttpHeaders(), HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<?> getOffersByCategoryId(Integer categoryId) {
 		
-		logger.info("Getting CategoryOffers with Category Id : " + categoryId);
-		List<CategoryOffer> list = repository.getOffersByCategoryId(categoryId);
-		if(null == list) {
-			logger.info("Category Offers not found for Category Id : " + categoryId);
-			return ResponseEntity.notFound().build();
+		try {
+			logger.info("Getting CategoryOffers with Category Id : " + categoryId);
+			List<CategoryOffer> list = repository.getOffersByCategoryId(categoryId);
+			if(null == list) {
+				logger.info("Category Offers not found for Category Id : " + categoryId);
+				return ResponseEntity.notFound().build();
+			}
+			
+			logger.info("Category Offers Found for Category Id : " + categoryId + ", List : " + list);
+			return new ResponseEntity<List<CategoryOffer>>(list, new HttpHeaders(), HttpStatus.OK);
+		} catch (Exception e) {
+			logger.error("Error in getting CategoryOffers by Category Id : " + e.getMessage());
+			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
-		
-		logger.info("Category Offers Found for Category Id : " + categoryId + ", List : " + list);
-		return new ResponseEntity<List<CategoryOffer>>(list, new HttpHeaders(), HttpStatus.OK);
 	}
 
 }
