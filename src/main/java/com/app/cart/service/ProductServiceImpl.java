@@ -1,6 +1,7 @@
 package com.app.cart.service;
 
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import com.app.cart.repository.ProductRepository;
 @Transactional
 public class ProductServiceImpl implements ProductService {
 
+	@Autowired
 	private ProductRepository repo;
 
 	@Override
@@ -26,8 +28,7 @@ public class ProductServiceImpl implements ProductService {
 		try {
 			return new ResponseEntity<Integer>(repo.save(product).getProductId(),new HttpHeaders(),HttpStatus.CREATED);
 		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
 
@@ -42,11 +43,9 @@ public class ProductServiceImpl implements ProductService {
 			return new ResponseEntity<Product>(repo.save(product), new HttpHeaders(),HttpStatus.OK);
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
-
 
 	@Override
 	public ResponseEntity<?> deleteProduct(Integer id) {
@@ -58,10 +57,8 @@ public class ProductServiceImpl implements ProductService {
 			repo.delete(id);
 			return new ResponseEntity<Product>(delObject, new HttpHeaders(),HttpStatus.OK);
 		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
-
 	}
 
 	@Override
@@ -73,10 +70,8 @@ public class ProductServiceImpl implements ProductService {
 				return ResponseEntity.notFound().build();
 			return new ResponseEntity<Product>(reqObject,new HttpHeaders(), HttpStatus.OK);
 		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
-
 	}
 
 	@Override
@@ -84,12 +79,11 @@ public class ProductServiceImpl implements ProductService {
 
 		try {
 			List<Product> productList = repo.findAll();
-			if(null == productList)
+			if(productList.isEmpty())
 				return ResponseEntity.notFound().build();
 			return new ResponseEntity<List<Product>>(productList,new HttpHeaders(),HttpStatus.OK);
 		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
 

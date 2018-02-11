@@ -33,7 +33,6 @@ public class CategoryServiceImpl implements CategoryService {
 			logger.info("Saving a Category : " + category);
 			return new ResponseEntity<Integer>(repository.save(category).getCategoryId(), new HttpHeaders(), HttpStatus.CREATED); 
 		} catch (Exception e) {
-			e.printStackTrace();
 			logger.error("Error in saving a Category : " + e.getMessage());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -42,70 +41,73 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public ResponseEntity<?> editCategory(Integer id, Category category) {
 		
-		Category dbObject = repository.findOne(id);
-		if (null == dbObject) {
-			logger.info("Category not found with id : " + id);
-			return ResponseEntity.notFound().build();
-		}
-		
-		category.setCategoryId(dbObject.getCategoryId());
-		
 		try {
+			Category dbObject = repository.findOne(id);
+			if (null == dbObject) {
+				logger.info("Category not found with id : " + id);
+				return ResponseEntity.notFound().build();
+			}
+			category.setCategoryId(dbObject.getCategoryId());
 			logger.info("Editing a Category : " + category);
 			return new ResponseEntity<Category>(repository.save(category), new HttpHeaders(), HttpStatus.OK); 
 		} catch (Exception e) {
-			e.printStackTrace();
 			logger.error("Error in editing a Category : " + e.getMessage());
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
 
 	@Override
 	public ResponseEntity<?> deleteCategory(Integer id) {
 		
-		Category dbObject = repository.findOne(id);
-		if (null == dbObject) {
-			logger.info("Category not found with id : " + id);
-			return ResponseEntity.notFound().build();
-		}
-		
 		try {
+			Category dbObject = repository.findOne(id);
+			if (null == dbObject) {
+				logger.info("Category not found with id : " + id);
+				return ResponseEntity.notFound().build();
+			}
 			logger.info("Deleting a Category, id : " + id);
 			repository.delete(id);
 			return new ResponseEntity<Category>(dbObject, new HttpHeaders(), HttpStatus.OK); 
 		} catch (Exception e) {
-			e.printStackTrace();
 			logger.error("Error in deleting a Category : " + e.getMessage());
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
 
 	@Override
 	public ResponseEntity<?> getCategory(Integer id) {
 		
-		logger.info("Getting Category with id : " + id);
-		Category dbObject = repository.findOne(id);
-		if (null == dbObject) {
-			logger.info("Category not found with id : " + id);
-			return ResponseEntity.notFound().build();
+		try {
+			logger.info("Getting Category with id : " + id);
+			Category dbObject = repository.findOne(id);
+			if (null == dbObject) {
+				logger.info("Category not found with id : " + id);
+				return ResponseEntity.notFound().build();
+			}
+			logger.info("Found Category with id : " + id + ", Category : " + dbObject);
+			return new ResponseEntity<Category>(dbObject, new HttpHeaders(), HttpStatus.OK);
+		} catch (Exception e) {
+			logger.error("Error in getting a Category : " + e.getMessage());
+			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
-		
-		logger.info("Found Category with id : " + id + ", Category : " + dbObject);
-		return new ResponseEntity<Category>(dbObject, new HttpHeaders(), HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<?> getAllCategories() {
 		
-		logger.info("Getting All Categories");
-		List<Category> list = repository.findAll();
-		if(null == list) {
-			logger.info("Categories not found");
-			return ResponseEntity.notFound().build();
+		try {
+			logger.info("Getting All Categories");
+			List<Category> list = repository.findAll();
+			if(null == list) {
+				logger.info("Categories not found");
+				return ResponseEntity.notFound().build();
+			}
+			logger.info("Categories Found : " + list);
+			return new ResponseEntity<List<Category>>(list, new HttpHeaders(), HttpStatus.OK);
+		} catch (Exception e) {
+			logger.error("Error in getting all Categories : " + e.getMessage());
+			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
-		
-		logger.info("Categories Found : " + list);
-		return new ResponseEntity<List<Category>>(list, new HttpHeaders(), HttpStatus.OK);
 	}
 
 }
