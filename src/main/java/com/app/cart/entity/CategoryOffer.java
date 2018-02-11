@@ -18,6 +18,7 @@ import lombok.ToString;
 
 /**
  * @author omkar.nikam
+ * @since 03-Feb-2018
  * Table for Category Offers
  */
 
