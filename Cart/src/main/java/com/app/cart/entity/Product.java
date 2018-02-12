@@ -67,7 +67,7 @@ public class Product {
 	
 	@ManyToOne
 	@JoinColumn( name = "brandId", nullable = false )
-	private Category brand;
+	private Brand brand;
 	
 	@OneToMany( mappedBy = "product" , cascade = CascadeType.ALL, orphanRemoval = false )
 	@JsonIgnore

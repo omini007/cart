@@ -15,4 +15,6 @@ public interface ProductOfferService {
 	
 	public ResponseEntity<?> getAllOffers();
 	
+	public ResponseEntity<?> getOffersByProduct(Integer id);
+	
 }
