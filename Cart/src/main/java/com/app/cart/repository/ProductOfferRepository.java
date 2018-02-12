@@ -12,6 +12,6 @@ import com.app.cart.entity.ProductOffer;
 @Repository
 public interface ProductOfferRepository extends JpaRepository<ProductOffer, Integer> {
 	
-	@Query(value="from ProductOffer c where c.product.productId=?1")
-	List<ProductOffer> findByProduct(Integer id);
+	//@Query(value="from ProductOffer o where o.product.productId=?1")
+	List<ProductOffer> findByProductProductId(Integer id);
 }
