@@ -20,8 +20,8 @@ public interface ProductService {
 
 	public ResponseEntity<?> getAllProducts();
 
-	public ResponseEntity<?> getProductByCategory( Integer categoryId);
+	public ResponseEntity<?> getProductByCategory( Integer id);
 
-	public ResponseEntity<?> getProductByBrand( Integer brandId);
+	public ResponseEntity<?> getProductByBrand( Integer id);
 
 }
