@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import lombok.Data;
 
 /**
- * @author omkar.nikam
+ * @author Omkar Nikam
  * @since 03-Feb-2018
  * Table for General Offers
  */

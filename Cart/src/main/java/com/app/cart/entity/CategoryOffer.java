@@ -17,7 +17,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 /**
- * @author omkar.nikam
+ * @author Omkar Nikam
  * @since 03-Feb-2018
  * Table for Category Offers
  */
