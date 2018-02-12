@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.app.cart.entity.Product;
+import com.app.cart.entity.ProductOffer;
 import com.app.cart.repository.ProductRepository;
 
 /**
@@ -88,13 +89,29 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ResponseEntity<?> getProductByCategory(Integer Categoryid) {
-		return null;
+	public ResponseEntity<?> getProductByCategory(Integer id) {
+		try {
+			List<Product> list = repo.findByCategoryCategoryId(id);
+			if(list.isEmpty())
+				return ResponseEntity.notFound().build();
+			return new ResponseEntity<List<Product>>(list,new HttpHeaders(),HttpStatus.OK);
+		}
+		catch(Exception e){
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+		}
 	}
 
 	@Override
-	public ResponseEntity<?> getProductByBrand(Integer Brandid) {
-		return null;
+	public ResponseEntity<?> getProductByBrand(Integer id) {
+		try {
+			List<Product> list = repo.findByBrandBrandId(id);
+			if(list.isEmpty())
+				return ResponseEntity.notFound().build();
+			return new ResponseEntity<List<Product>>(list,new HttpHeaders(),HttpStatus.OK);
+		}
+		catch(Exception e){
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+		}
 	}
 
 }
