@@ -97,4 +97,17 @@ public class ProductOfferServiceImpl implements ProductOfferService {
 		}
 	}
 
+	@Override
+	public ResponseEntity<?> getOffersByProduct(Integer id) {
+		try {
+			List<ProductOffer> list = repo.findByProduct(id);
+			if(list.isEmpty())
+				return ResponseEntity.notFound().build();
+			return new ResponseEntity<List<ProductOffer>>(list,new HttpHeaders(),HttpStatus.OK);
+		}
+		catch(Exception e){
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+	}
+
 }
