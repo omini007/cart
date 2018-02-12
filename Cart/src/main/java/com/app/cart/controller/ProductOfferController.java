@@ -49,7 +49,11 @@ public class ProductOfferController {
 	}
 	
 
-	
+	@GetMapping("/getbyproduct/{id}")
+	public ResponseEntity<?> getOffersByProduct(@PathVariable Integer id)
+	{
+		return service.getOffersByProduct(id);
+	}
 
 
 
