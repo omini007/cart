@@ -65,6 +65,12 @@ public class BrandOfferController {
 	{	
 		return brandOfferService.getAllBrandOffersByBrandName(brandName);
 	}
+	
+	@GetMapping("/getbybrand/{id}")
+	public ResponseEntity<?> getAllBrandOffersByBrandId(@PathVariable Integer id)
+	{	
+		return brandOfferService.getAllBrandOffersByBrandId(id);
+	}
 }
 	
 	

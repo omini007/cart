@@ -100,7 +100,7 @@ public class ProductOfferServiceImpl implements ProductOfferService {
 	@Override
 	public ResponseEntity<?> getOffersByProduct(Integer id) {
 		try {
-			List<ProductOffer> list = repo.findByProduct(id);
+			List<ProductOffer> list = repo.findByProductProductId(id);
 			if(list.isEmpty())
 				return ResponseEntity.notFound().build();
 			return new ResponseEntity<List<ProductOffer>>(list,new HttpHeaders(),HttpStatus.OK);

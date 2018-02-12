@@ -98,4 +98,16 @@ public class BrandOfferServiceImpl implements BrandOfferService {
 		}
 	}
 
+	@Override
+	public ResponseEntity<?> getAllBrandOffersByBrandId(Integer id) {
+		try {
+			List<BrandOffer> list=repository.findByBrandBrandId(id);
+			if(list.isEmpty())
+				return ResponseEntity.notFound().build();
+			return new ResponseEntity<List<BrandOffer>>(list,new HttpHeaders(),HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+	}
+
 }

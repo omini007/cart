@@ -16,5 +16,7 @@ public interface BrandOfferService {
 	public ResponseEntity<?> getAllBrandOffers();
 	
 	public ResponseEntity<?> getAllBrandOffersByBrandName(String brandName);
+
+	public ResponseEntity<?> getAllBrandOffersByBrandId(Integer id);
 	
 }
