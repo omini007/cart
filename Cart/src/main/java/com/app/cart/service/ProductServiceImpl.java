@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.app.cart.entity.Product;
-import com.app.cart.entity.ProductOffer;
 import com.app.cart.repository.ProductRepository;
 
 /**
@@ -89,9 +88,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ResponseEntity<?> getProductByCategory(Integer id) {
+	public ResponseEntity<?> getProductByBrand(Integer id) {
 		try {
-			List<Product> list = repo.findByCategoryCategoryId(id);
+			List<Product> list = repo.findByBrandBrandId(id);
 			if(list.isEmpty())
 				return ResponseEntity.notFound().build();
 			return new ResponseEntity<List<Product>>(list,new HttpHeaders(),HttpStatus.OK);
@@ -102,9 +101,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ResponseEntity<?> getProductByBrand(Integer id) {
+	public ResponseEntity<?> getProductByCategory(Integer id) {
+
 		try {
-			List<Product> list = repo.findByBrandBrandId(id);
+			List<Product> list = repo.findByCategoryId(id);
 			if(list.isEmpty())
 				return ResponseEntity.notFound().build();
 			return new ResponseEntity<List<Product>>(list,new HttpHeaders(),HttpStatus.OK);

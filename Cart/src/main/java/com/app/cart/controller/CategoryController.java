@@ -83,4 +83,25 @@ public class CategoryController {
 		logger.info("Calling Category Service - Get All");
 		return service.getAllCategories();
 	}
+	
+	/**
+	 * @return list of Sub Category Entities
+	 */
+	@GetMapping("/getallparentcategories")
+	public ResponseEntity<?> getAllSubCategories() {
+		
+		logger.info("Calling Category Service - Get All Sub Categories");
+		return service.getAllSubCategories();
+	}
+	
+	/**
+	 * @return list of Parent Category Entities
+	 */
+	@GetMapping("/getallsubcategories")
+	public ResponseEntity<?> getAllParentCategories() {
+		
+		logger.info("Calling Category Service - Get All Parent Categories");
+		return service.getAllParentCategories();
+	}
+	
 }

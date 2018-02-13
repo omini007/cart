@@ -53,15 +53,13 @@ public class ProductController {
 		return service.getAllProducts();
 	} 
 
-	@GetMapping("/getbycategory/{id}")
-	public ResponseEntity<?> getByCategory(@PathVariable Integer id) {
-		return service.getProductByCategory(id);
-	}
-
 	@GetMapping("/getbybrand/{id}")
 	public ResponseEntity<?> getByBrand(@PathVariable Integer id) {
 		return service.getProductByBrand(id);
 	}
 
-
+	@GetMapping("/getbycategory/{id}")
+	public ResponseEntity<?> getByCategory(@PathVariable Integer id) {
+		return service.getProductByCategory(id);
+	}
 }

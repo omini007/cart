@@ -20,4 +20,8 @@ public interface CategoryService {
 	public ResponseEntity<?> getCategory(Integer id);
 	
 	public ResponseEntity<?> getAllCategories();
+	
+	public ResponseEntity<?> getAllSubCategories();
+	
+	public ResponseEntity<?> getAllParentCategories();
 }

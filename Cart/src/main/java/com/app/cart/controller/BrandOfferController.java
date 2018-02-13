@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.app.cart.entity.BrandOffer;
-import com.app.cart.entity.Offer;
 import com.app.cart.service.BrandOfferService;
 
 /**
@@ -60,15 +58,15 @@ public class BrandOfferController {
 		return brandOfferService.getAllBrandOffers();
 	}
 
-	@GetMapping("/get/{brandName}")
+	/*@GetMapping("/get/{brandName}")
 	public ResponseEntity<?> getAllBrandOffersByBrandName(@PathVariable String brandName)
 	{	
 		return brandOfferService.getAllBrandOffersByBrandName(brandName);
-	}
+	}*/
 	
 	@GetMapping("/getbybrand/{id}")
-	public ResponseEntity<?> getAllBrandOffersByBrandId(@PathVariable Integer id)
-	{	
+	public ResponseEntity<?> getAllBrandOffersByBrandId(@PathVariable Integer id){
+		
 		return brandOfferService.getAllBrandOffersByBrandId(id);
 	}
 }

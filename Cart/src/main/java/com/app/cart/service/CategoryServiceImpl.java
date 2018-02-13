@@ -110,4 +110,40 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 	}
 
+	@Override
+	public ResponseEntity<?> getAllSubCategories() {
+
+		try {
+			logger.info("Getting All Sub Categories");
+			List<Category> list = repository.findAllSubCategories();
+			if(null == list) {
+				logger.info("Sub Categories not found");
+				return ResponseEntity.notFound().build();
+			}
+			logger.info("Sub Categories Found : " + list);
+			return new ResponseEntity<List<Category>>(list, new HttpHeaders(), HttpStatus.OK);
+		} catch (Exception e) {
+			logger.error("Error in getting all Sub Categories : " + e.getMessage());
+			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+	}
+
+	@Override
+	public ResponseEntity<?> getAllParentCategories() {
+		
+		try {
+			logger.info("Getting All Parent Categories");
+			List<Category> list = repository.findAllParentCategories();
+			if(null == list) {
+				logger.info("Parent Categories not found");
+				return ResponseEntity.notFound().build();
+			}
+			logger.info("Parent Categories Found : " + list);
+			return new ResponseEntity<List<Category>>(list, new HttpHeaders(), HttpStatus.OK);
+		} catch (Exception e) {
+			logger.error("Error in getting all Parent Categories : " + e.getMessage());
+			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+	}
+
 }
