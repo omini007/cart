@@ -28,37 +28,37 @@ public class ProductController {
 
 	private static final Logger logger=Logger.getLogger(ProductController.class);
 
-	@PostMapping("/add")
+	@PostMapping(value = "/add", produces = "application/json")
 	public ResponseEntity<?> addProduct(@RequestBody Product product) {
 		return service.addProduct(product);
 	}
 
-	@PutMapping("/edit/{id}")
+	@PutMapping(value = "/edit/{id}", produces = "application/json")
 	public ResponseEntity<?> editProduct(@PathVariable Integer id, @RequestBody Product product) {
 		return service.editProduct(id, product);
 	}
 
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping(value = "/delete/{id}", produces = "application/json")
 	public ResponseEntity<?> deleteProduct(@PathVariable Integer id) {
 		return service.deleteProduct(id);
 	}
 
-	@GetMapping("/get/{id}")
+	@GetMapping(value = "/get/{id}", produces = "application/json")
 	public ResponseEntity<?> getProduct(@PathVariable Integer id) {
 		return service.getProduct(id);
 	}
 
-	@GetMapping("/getall")
+	@GetMapping(value = "/getall", produces = "application/json")
 	public ResponseEntity<?> getAllProducts() {
 		return service.getAllProducts();
 	} 
 
-	@GetMapping("/getbybrand/{id}")
+	@GetMapping(value = "/getbybrand/{id}", produces = "application/json")
 	public ResponseEntity<?> getByBrand(@PathVariable Integer id) {
 		return service.getProductByBrand(id);
 	}
 
-	@GetMapping("/getbycategory/{id}")
+	@GetMapping(value = "/getbycategory/{id}", produces = "application/json")
 	public ResponseEntity<?> getByCategory(@PathVariable Integer id) {
 		return service.getProductByCategory(id);
 	}

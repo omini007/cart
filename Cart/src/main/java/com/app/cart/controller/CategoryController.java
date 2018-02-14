@@ -33,7 +33,7 @@ public class CategoryController {
 	 * @param category - the entity Category
 	 * @return id of the persisted Category entity
 	 */
-	@PostMapping("/add")
+	@PostMapping(value = "/add", produces = "application/json")
 	public ResponseEntity<?> addCategory(@RequestBody Category category) {
 		
 		logger.info("Calling Category Service - Add : " + category);
@@ -45,7 +45,7 @@ public class CategoryController {
 	 * @param category - the entity Category
 	 * @return the edited entity Category
 	 */
-	@PutMapping("/edit/{id}")
+	@PutMapping(value = "/edit/{id}", produces = "application/json")
 	public ResponseEntity<?> editCategory(@PathVariable Integer id, @RequestBody Category category) {
 		
 		logger.info("Calling Category Service - Edit, id : " + id + ", category :" + category);
@@ -56,7 +56,7 @@ public class CategoryController {
 	 * @param id - id of the Category to be deleted
 	 * @return the deleted entity Category
 	 */
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping(value = "/delete/{id}", produces = "application/json")
 	public ResponseEntity<?> deleteCategory(@PathVariable Integer id) {
 		
 		logger.info("Calling Category Service - Delete, id : " + id);
@@ -67,7 +67,7 @@ public class CategoryController {
 	 * @param id - id of the Category to be retrieved
 	 * @return the requested entity Category
 	 */
-	@GetMapping("/get/{id}")
+	@GetMapping(value = "/get/{id}", produces = "application/json")
 	public ResponseEntity<?> getCategory(@PathVariable Integer id) {
 		
 		logger.info("Calling Category Service - Get, id : " + id);
@@ -77,7 +77,7 @@ public class CategoryController {
 	/**
 	 * @return list of Category Entities
 	 */
-	@GetMapping("/getall")
+	@GetMapping(value = "/getall", produces = "application/json")
 	public ResponseEntity<?> getAllCategories() {
 		
 		logger.info("Calling Category Service - Get All");
@@ -87,7 +87,7 @@ public class CategoryController {
 	/**
 	 * @return list of Sub Category Entities
 	 */
-	@GetMapping("/getallparentcategories")
+	@GetMapping(value = "/getallsubcategories", produces = "application/json")
 	public ResponseEntity<?> getAllSubCategories() {
 		
 		logger.info("Calling Category Service - Get All Sub Categories");
@@ -97,7 +97,7 @@ public class CategoryController {
 	/**
 	 * @return list of Parent Category Entities
 	 */
-	@GetMapping("/getallsubcategories")
+	@GetMapping(value = "/getallparentcategories", produces = "application/json")
 	public ResponseEntity<?> getAllParentCategories() {
 		
 		logger.info("Calling Category Service - Get All Parent Categories");
