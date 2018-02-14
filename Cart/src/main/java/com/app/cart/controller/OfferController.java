@@ -31,31 +31,31 @@ public class OfferController {
 	
 	private static final Logger logger=Logger.getLogger(OfferController.class);
 
-	@PostMapping("/add")
+	@PostMapping(value = "/add", produces = "application/json")
 	public ResponseEntity<?> addOffer(@RequestBody Offer offer){	
 		
 		return service.addOffer(offer);
 	}
 	
-	@PutMapping("/edit/{id}")
+	@PutMapping(value = "/edit/{id}", produces = "application/json")
 	public ResponseEntity<?> editOffer(@PathVariable Integer id ,@RequestBody Offer offer){	
 	
 		return service.editOffer(id, offer);
 	}
 	
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping(value = "/delete/{id}", produces = "application/json")
 	public ResponseEntity<?> deleteOffer(@PathVariable Integer id){	
 		
 		return service.deleteOffer(id);
 	}
 
-	@GetMapping("/get/{id}")
+	@GetMapping(value = "/get/{id}", produces = "application/json")
 	public ResponseEntity<?> getOffer(@PathVariable Integer id){	
 	
 		return service.getOffer(id);
 	}
 	
-	@GetMapping("/getall")
+	@GetMapping(value = "/getall", produces = "application/json")
 	public ResponseEntity<?> getAllOffers(){	
 		return service.getAllOffers();
 	}
