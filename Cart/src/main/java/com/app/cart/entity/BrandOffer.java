@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
@@ -55,9 +57,11 @@ public class BrandOffer {
 	private Double maxDiscountAmount;
 	
 	@Column(unique = false, nullable = false)
+	@JsonFormat(pattern="dd-MM-yyyy")
 	private Date creationDate;
 	
 	@Column(unique = false, nullable = false)
+	@JsonFormat(pattern="dd-MM-yyyy")
 	private Date expiryDate;
 	
 	@ManyToOne
