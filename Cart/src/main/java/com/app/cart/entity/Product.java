@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -21,7 +23,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 /**
- * @author omkar.nikam
+ * @author Omkar Nikam
  * @since 03-Feb-2018
  * Table for Product
  */
@@ -59,6 +61,7 @@ public class Product {
 	private String productImagePath;
 	
 	@Column(unique = false, nullable = false)
+	@JsonFormat(pattern="dd-MM-yyyy")
 	private Date stockUpdatedDate;
 	
 	@ManyToOne
