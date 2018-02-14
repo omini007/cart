@@ -54,6 +54,7 @@ public class BrandController {
 	@ApiOperation(value = "Edit a Brand", notes = "Updates an existing Brand", response = Brand.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully updated a Brand !"),
+			@ApiResponse(code = 404, message = "Brand to be edited not found !"),
 			@ApiResponse(code = 422, message = "Something went wrong, Brand could not be updated !")
 	})
 	@PutMapping(value = "/edit/{id}", produces = "application/json")
@@ -69,6 +70,7 @@ public class BrandController {
 	@ApiOperation(value = "Delete a Brand", notes = "Deletes an existing Brand", response = Brand.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully deleted a Brand !"),
+			@ApiResponse(code = 404, message = "Brand to be deleted not found !"),
 			@ApiResponse(code = 422, message = "Something went wrong, Brand could not be deleted !")
 	})
 	@DeleteMapping(value = "/delete/{id}", produces = "application/json")
@@ -84,6 +86,7 @@ public class BrandController {
 	@ApiOperation(value = "Get a Brand", notes = "Get an existing Brand", response = Brand.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully retrieved a Brand !"),
+			@ApiResponse(code = 404, message = "Brand to be retrieved not found !"),
 			@ApiResponse(code = 422, message = "Something went wrong, Brand could not be retrieved !")
 	})
 	@GetMapping(value = "/get/{id}", produces = "application/json")
@@ -98,6 +101,7 @@ public class BrandController {
 	@ApiOperation(value = "Get all Brands", notes = "Get all existing Brands", response = ArrayList.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully retrieved all Brands !"),
+			@ApiResponse(code = 404, message = "Brands to be retrieved not found !"),
 			@ApiResponse(code = 422, message = "Something went wrong, Brands could not be retrieved !")
 	})
 	@GetMapping(value = "/getall", produces = "application/json")
