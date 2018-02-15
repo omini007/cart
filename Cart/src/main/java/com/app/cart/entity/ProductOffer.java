@@ -78,7 +78,7 @@ public class ProductOffer {
 	@JsonFormat(pattern="dd-MM-yyyy")
 	private Date expiryDate;
 	
-	@ApiModelProperty(value="Id of Existing Product", required = true)
+	@ApiModelProperty(required = true)
 	@ManyToOne
 	@JoinColumn( name = "productId", nullable = false )
 	private Product product;
