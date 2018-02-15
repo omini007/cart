@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.app.cart.entity.BrandOffer;
-import com.app.cart.entity.Offer;
 import com.app.cart.service.BrandOfferService;
 
 /**
@@ -30,45 +28,45 @@ public class BrandOfferController {
 	
 	private static final Logger logger=Logger.getLogger(BrandOfferController.class);
 
-	@PostMapping(value="/add")
+	@PostMapping(value="/add", produces = "application/json")
 	public ResponseEntity<?> addBrandOffer(@RequestBody BrandOffer brandOffer)
 	{	
 		return brandOfferService.addBrandOffer(brandOffer);
 	}
 
-	@PutMapping("/edit/{id}")
+	@PutMapping(value = "/edit/{id}", produces = "application/json")
 	public ResponseEntity<?> editBrandOffer(@PathVariable Integer id ,@RequestBody BrandOffer brandOffer)
 	{	
 		return brandOfferService.editBrandOffer(id, brandOffer);
 	}
 	
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping(value = "/delete/{id}", produces = "application/json")
 	public ResponseEntity<?> deleteBrandOffer(@PathVariable Integer id)
 	{	
 		return brandOfferService.deleteBrandOffer(id);
 	}
 	
-	@GetMapping("/get/{id}")
+	@GetMapping(value = "/get/{id}", produces = "application/json")
 	public ResponseEntity<?> getBrandOffer(@PathVariable Integer id)
 	{		
 		return brandOfferService.getBrandOffer(id);
 	}
 	
-	@GetMapping("/getall")
+	@GetMapping(value = "/getall", produces = "application/json")
 	public ResponseEntity<?> getAllBrandOffers()
 	{	
 		return brandOfferService.getAllBrandOffers();
 	}
 
-	@GetMapping("/get/{brandName}")
+	/*@GetMapping(value = "/get/{brandName}", produces = "application/json")
 	public ResponseEntity<?> getAllBrandOffersByBrandName(@PathVariable String brandName)
 	{	
 		return brandOfferService.getAllBrandOffersByBrandName(brandName);
-	}
+	}*/
 	
-	@GetMapping("/getbybrand/{id}")
-	public ResponseEntity<?> getAllBrandOffersByBrandId(@PathVariable Integer id)
-	{	
+	@GetMapping(value = "/getbybrand/{id}", produces = "application/json")
+	public ResponseEntity<?> getAllBrandOffersByBrandId(@PathVariable Integer id){
+		
 		return brandOfferService.getAllBrandOffersByBrandId(id);
 	}
 }

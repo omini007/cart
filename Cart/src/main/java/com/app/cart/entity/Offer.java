@@ -9,10 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 /**
- * @author omkar.nikam
+ * @author Omkar Nikam
  * @since 03-Feb-2018
  * Table for General Offers
  */
@@ -50,9 +53,11 @@ public class Offer {
 	private Integer minNumberOfProducts;
 	
 	@Column(unique = false, nullable = false)
+	@JsonFormat(pattern="dd-MM-yyyy")
 	private Date creationDate;
 	
 	@Column(unique = false, nullable = false)
+	@JsonFormat(pattern="dd-MM-yyyy")
 	private Date expiryDate;
 	
 }
