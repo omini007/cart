@@ -34,7 +34,7 @@ public class CategoryServiceImpl implements CategoryService {
 			return new ResponseEntity<Integer>(repository.save(category).getCategoryId(), new HttpHeaders(), HttpStatus.CREATED); 
 		} catch (Exception e) {
 			logger.error("Error in saving a Category : " + e.getMessage());
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
 
