@@ -2,8 +2,6 @@ package com.app.cart.configuration;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
@@ -57,10 +55,7 @@ public class DatabaseConfig {
       return transactionManager;
   }
   
-  @Bean
-  public ModelMapper modelMapper() {
-	    return new ModelMapper();
-	}
+
   
   
 }
