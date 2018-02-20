@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.app.cart.entity.Offer;
 import com.app.cart.service.OfferService;
-
 import java.util.ArrayList;
 
 /**
@@ -51,7 +50,6 @@ public class OfferController {
 		
 		return service.addOffer(offer);
 	}
-
 
 	@ApiOperation(value = "Edit a Offer", notes = "Update existing Offer", response = Offer.class)
 	@ApiResponses(value = {
@@ -90,7 +88,6 @@ public class OfferController {
 		return service.getOffer(id);
 	}
 
-
 	@ApiOperation(value = "Get all Offers", notes = "Get list of all offers", response = ArrayList.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 201, message = "Successfully added a new Offer !"),
@@ -102,9 +99,3 @@ public class OfferController {
 	}
 	
 }
-	
-	
-	
-	
-
-

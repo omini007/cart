@@ -12,19 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.app.cart.entity.ProductOffer;
 import com.app.cart.service.ProductOfferService;
-
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-
 
 /**
  * @author SwapnilPawale
  * @since 15-02-2018
  */
-
-
-
 
 @RestController
 @RequestMapping("/productoffer")
@@ -32,7 +27,6 @@ public class ProductOfferController {
 
 	@Autowired
 	private ProductOfferService service;
-
 	
 	@ApiOperation(value = "Add a ProductOffer", notes = "Creates New ProductOffer", response = Integer.class)
 	@ApiResponses(value = {
@@ -43,7 +37,6 @@ public class ProductOfferController {
 	public ResponseEntity<?> addOffer(@RequestBody ProductOffer offer){	
 		return service.addOffer(offer);
 	}
-	
 	
 	@ApiOperation(value = "Edit a ProductOffer", notes = "Update an Existing ProductOffer by using ID", response = ProductOffer.class)
 	@ApiResponses(value = {
@@ -56,8 +49,6 @@ public class ProductOfferController {
 		return service.editOffer(id, offer);
 	}
 	
-	
-	
 	@ApiOperation(value = "Delete a ProductOffer", notes = "Delete an Existing ProductOffer by using ID", response = ProductOffer.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully Deleted ProductOffer!!!"),
@@ -69,7 +60,6 @@ public class ProductOfferController {
 		return service.deleteOffer(id);
 	}
 
-	
 	@ApiOperation(value = "Get a ProductOffer", notes = "Get an Existing ProductOffer by using ID", response = ProductOffer.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully retrieved ProductOffer!!!"),
@@ -80,7 +70,6 @@ public class ProductOfferController {
 	public ResponseEntity<?> getOffer(@PathVariable Integer id){
 		return service.getOffer(id);
 	}
-
 	
 	@ApiOperation(value = "Get all ProductOffer", notes = "Get all Existing ProductOffers", response = ProductOffer.class)
 	@ApiResponses(value = {
@@ -93,7 +82,6 @@ public class ProductOfferController {
 		return service.getAllOffers();
 	}
 
-	
 	@ApiOperation(value = "Get all ProductOffers by Product ID", notes = "Get all Existing ProductOffers by using Product ID", response = ProductOffer.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully retrieved all ProductOffers for Given Product ID !!!"),
