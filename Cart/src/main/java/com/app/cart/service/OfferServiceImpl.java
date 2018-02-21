@@ -1,5 +1,6 @@
 package com.app.cart.service;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -26,7 +27,8 @@ public class OfferServiceImpl implements OfferService {
 	@Override
 	public ResponseEntity<?> addOffer(Offer offer) {
 		try {
-			return new ResponseEntity<Integer>(repo.save(offer).getOfferId(),new HttpHeaders(),HttpStatus.OK);
+			offer.setCreationDate(new Date());
+			return new ResponseEntity<Integer>(repo.save(offer).getOfferId(),new HttpHeaders(),HttpStatus.CREATED);
 		}
 		catch(Exception e){
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.UNPROCESSABLE_ENTITY);
@@ -38,7 +40,7 @@ public class OfferServiceImpl implements OfferService {
 	public ResponseEntity<?> editOffer(Integer id, Offer offer) {
 		try {
 			Offer dbcopy= repo.findOne(id);
-			if(null==dbcopy)
+			if(null == dbcopy)
 				return ResponseEntity.notFound().build();
 			offer.setOfferId(dbcopy.getOfferId()); //Just set new received offer objects id field to the one we want to edit in DB and persist using save()
 			return new ResponseEntity<Offer>(repo.save(offer),new HttpHeaders(),HttpStatus.OK);
@@ -53,7 +55,7 @@ public class OfferServiceImpl implements OfferService {
 	public ResponseEntity<?> deleteOffer(Integer id) {
 		try {
 			Offer deletedObject=repo.findOne(id);
-			if(null==deletedObject)
+			if(null == deletedObject)
 				return ResponseEntity.notFound().build();
 			else {
 				repo.delete(id);
@@ -68,7 +70,7 @@ public class OfferServiceImpl implements OfferService {
 	public ResponseEntity<?> getOffer(Integer id) {
 		try {
 			Offer requestedObject=repo.findOne(id);
-			if(null==requestedObject)
+			if(null == requestedObject)
 				return ResponseEntity.notFound().build();
 			return new ResponseEntity<Offer>(requestedObject,new HttpHeaders(),HttpStatus.OK);
 		}
@@ -81,7 +83,7 @@ public class OfferServiceImpl implements OfferService {
 	public ResponseEntity<?> getAllOffers() {
 		try {
 			List<Offer> list=repo.findAll();
-			if(null==list)
+			if(list.isEmpty())
 				return ResponseEntity.notFound().build();
 			return new ResponseEntity<List<Offer>>(list,new HttpHeaders(),HttpStatus.OK);
 		}

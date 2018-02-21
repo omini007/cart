@@ -1,7 +1,6 @@
 package com.app.cart.service;
 
 import org.springframework.http.ResponseEntity;
-
 import com.app.cart.entity.Offer;
 
 public interface OfferService {
