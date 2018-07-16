@@ -14,5 +14,10 @@ import com.app.cart.entity.BrandOffer;
 public interface BrandOfferRepository extends JpaRepository<BrandOffer, Integer> {
 
 	public List<BrandOffer> findByBrandBrandName(String brandName);
+
+	/**
+	 * @param id Brand Id
+	 * @return A list of BrandOffers
+	 */
 	public List<BrandOffer> findByBrandBrandId(Integer id);
 }
