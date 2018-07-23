@@ -2,8 +2,8 @@
 var app = angular.module('cartApp',['ui.router','ngStorage']);
 
 app.constant('urls', {
-    BASE: 'http://localhost:8080/cart',
-    USER_SERVICE_API : 'http://localhost:8080/cart/product/'
+    BASE: 'http://localhost:8087/cart',
+    PRODUCT_SERVICE_API : 'http://localhost:8087/cart/product/'
 });
 
 
@@ -21,7 +21,7 @@ app.config(['$stateProvider', '$urlRouterProvider',
                     users: function ($q, productService) {
                         console.log('Data entry view');
                         var deferred = $q.defer();
-                        UserService.loadAllUsers().then(deferred.resolve, deferred.resolve);
+                        productService.addProduct().then(deferred.resolve, deferred.resolve);
                         return deferred.promise;
                     }
                 }
