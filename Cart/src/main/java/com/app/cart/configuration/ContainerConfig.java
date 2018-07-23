@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 Configuration added to tell servlet that we have custom Context path.
 */
 
-@Component
+//@Component
 public class ContainerConfig implements EmbeddedServletContainerCustomizer {
 
     @Override

@@ -10,7 +10,7 @@ app.constant('urls', {
 
 app.config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
-
+        alert('Ohayo');
         $stateProvider
             .state('views', {
                 url: '/',

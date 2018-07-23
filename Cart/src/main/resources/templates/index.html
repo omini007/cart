@@ -17,9 +17,15 @@
     <!-- JS (load angular, ui-router, and our custom js file) -->
     <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
-    <script src="app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.7.2/localforage.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
+
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/productController.js"></script>
+    <script type="text/javascript" src="/js/productService.js"></script>
 </head>
-<form class="form-horizontal">
+<body ng-app="cartApp">
+<form class="form-horizontal" ng-submit="ctrl.submit()" name="myForm">
     <fieldset>
 
         <!-- Form Name -->
@@ -30,7 +36,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="product_name">PRODUCT NAME</label>
             <div class="col-md-4">
-                <input id="product_name" name="product_name" placeholder="PRODUCT NAME" class="form-control input-md" required="" type="text">
+                <input id="product_name" ng-model="ctrl.product.productName" name="product_name" placeholder="PRODUCT NAME" class="form-control input-md" required="" type="text">
 
             </div>
         </div>
@@ -39,7 +45,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="product_name_fr">PRODUCT DESCRIPTION</label>
             <div class="col-md-4">
-                <input id="product_desc" name="product_name_fr" placeholder="PRODUCT DESCRIPTION" class="form-control input-md" required="" type="text">
+                <input id="product_desc" ng-model="ctrl.product.productDescription" name="product_name_fr" placeholder="PRODUCT DESCRIPTION" class="form-control input-md" required="" type="text">
 
             </div>
         </div>
@@ -48,7 +54,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="product_category">PRODUCT CATEGORY</label>
             <div class="col-md-4">
-                <select id="product_category" name="product_category" class="form-control">
+                <select id="product_category" ng-model="ctrl.product.category" name="product_category" class="form-control" value="1">
                 </select>
             </div>
         </div>
@@ -65,25 +71,25 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="available_quantity">PRODUCT QUANTITY</label>
             <div class="col-md-4">
-                <input id="available_quantity" name="available_quantity" placeholder="AVAILABLE QUANTITY" class="form-control input-md" required="" type="text">
+                <input id="available_quantity" name="available_quantity" ng-model="ctrl.product.quantity" placeholder="AVAILABLE QUANTITY" class="form-control input-md" required="" type="text">
 
             </div>
         </div>
 
         <!-- Text input-->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="product_weight">UNIT</label>
+            <label class="col-md-4 control-label" for="product_unit">UNIT</label>
             <div class="col-md-4">
-                <input id="product_weight" name="product_weight" placeholder="PRODUCT WEIGHT" class="form-control input-md" required="" type="text">
+                <input id="product_unit" name="product_unit" placeholder="PRODUCT UNIT" ng-model="ctrl.product.unit" class="form-control input-md" required="" type="text">
 
             </div>
         </div>
 
         <!-- Textarea -->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="product_description">PRODUCT RATE PER UNIT</label>
+            <label class="col-md-4 control-label" for="product_rate">PRODUCT RATE PER UNIT</label>
             <div class="col-md-4">
-                <textarea class="form-control" id="product_description" name="product_description"></textarea>
+                <textarea class="form-control" id="product_rate" ng-model="ctrl.product.rate" name="product_rate"></textarea>
             </div>
         </div>
 
@@ -92,7 +98,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="percentage_discount">PERCENTAGE DISCOUNT</label>
             <div class="col-md-4">
-                <input id="percentage_discount" name="percentage_discount" placeholder="PERCENTAGE DISCOUNT" class="form-control input-md" required="" type="text">
+                <input id="percentage_discount" name="percentage_discount" ng-model="ctrl.product.brand" value="watever" placeholder="PERCENTAGE DISCOUNT" class="form-control input-md" required="" type="text">
 
             </div>
         </div>
@@ -143,4 +149,4 @@
         </div>
     </fieldset>
 </form>
-
+</body>

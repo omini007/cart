@@ -19,7 +19,7 @@ angular.module('cartApp').factory('productService',
             function addProduct(product) {
                 console.log('Creating Product');
                 var deferred = $q.defer();
-                $http.post(urls.PRODUCT_SERVICE_API, product)
+                $http.post(urls.PRODUCT_SERVICE_API+add, product)
                     .then(
                         function (response) {
                             console.log(response.data);
