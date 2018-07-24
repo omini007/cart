@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cartApp').controller('productController',
-    ['UserService', '$scope',  function( productService, $scope) {
+    ['productService', '$scope',  function( productService, $scope) {
 
         var self = this;
 
@@ -16,8 +16,9 @@ angular.module('cartApp').controller('productController',
 
         function submit() {
             console.log('Submitting');
-                console.log('Saving New User', self.user);
-                addProduct(self.user);
+                console.log('Saving New User', self.product);
+                alert('in submit');
+                addProduct(self.product);
 
         }
 

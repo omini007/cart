@@ -14,13 +14,13 @@ Configuration added to tell servlet that we have custom Context path.
 */
 
 //@Component
-public class ContainerConfig implements EmbeddedServletContainerCustomizer {
-
+public class ContainerConfig{// implements EmbeddedServletContainerCustomizer {
+/*
     @Override
     public void customize(ConfigurableEmbeddedServletContainer container) {
 
         container.setPort(8087);
         container.setContextPath("/cart");
-    }
+    }*/
 
 }

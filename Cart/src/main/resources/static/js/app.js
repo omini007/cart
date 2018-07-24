@@ -2,8 +2,8 @@
 var app = angular.module('cartApp',['ui.router','ngStorage']);
 
 app.constant('urls', {
-    BASE: 'http://localhost:8087/cart',
-    PRODUCT_SERVICE_API : 'http://localhost:8087/cart/product/'
+    BASE: 'http://localhost:8087/',
+    PRODUCT_SERVICE_API : 'http://localhost:8087/product/'
 });
 
 
