@@ -10,13 +10,13 @@ import lombok.Data;
 @Data
 public class CategoryDto {
 
-	
-	private Integer categoryId;
-	private String categoryName;
-	private String categoryImagePath;
-	private Integer parentCategoryId;
-	private Set<Product> products;
-	private Set<CategoryOffer> offers;
 
-		
+    private Integer categoryId;
+    private String categoryName;
+    private String categoryImagePath;
+    private Integer parentCategoryId;
+    private Set<Product> products;
+    private Set<CategoryOffer> offers;
+
+
 }
